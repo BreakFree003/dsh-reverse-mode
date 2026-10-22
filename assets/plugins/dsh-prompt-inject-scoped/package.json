@@ -1,0 +1,17 @@
+{
+  "name": "dsh-prompt-inject-scoped",
+  "version": "0.1.0",
+  "private": true,
+  "description": "把一个文本文件当作系统提示词，只对它被挂载的那个 preset 生效（宿主平面与其它预设一点都不碰）",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "license": "MIT"
+}
