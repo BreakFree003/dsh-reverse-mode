@@ -110,11 +110,11 @@ dsh --profile web --patch "C:\Users\<你>\.dsh\ida.patch.yml"
 
 ```powershell
 # 1) 组合栈里能看到预设（不花 token、不开会话）
-dsh --profile web --dump-config | findstr /A:3 "preset-ida"
+dsh --profile web --dump-config | findstr /C:"preset-ida"
 
 # 2) 技能树
-dir "%USERPROFILE%\.dsh\vendor\reverse-ida\skills"      # 46 个目录
-dir "%USERPROFILE%\.dsh\vendor\reverse-ida\ctf"         # 42 个目录
+(Get-ChildItem "$env:USERPROFILE\.dsh\vendor\reverse-ida\skills").Count   # 46
+(Get-ChildItem "$env:USERPROFILE\.dsh\vendor\reverse-ida\ctf").Count      # 42
 
 # 3) 真用：重启 dsh → 新建会话选「逆向模式」→ 让模型 idb_list / idb_open
 ```
@@ -145,7 +145,7 @@ dir "%USERPROFILE%\.dsh\vendor\reverse-ida\ctf"         # 42 个目录
 
 ```powershell
 # 更新技能
-git -C "%USERPROFILE%\.dsh\vendor\reverse-skill" pull
+git -C "$env:USERPROFILE\.dsh\vendor\reverse-skill" pull
 node install.mjs --skip-prompt
 
 # 升级 dsh 之后（预设随目标机的 standard 重新生成）
@@ -167,7 +167,7 @@ node install.mjs --uninstall --purge  # 再删插件与技能树（prompt-inject
   路径超 260 字符会失败。把 `DSH_HOME` 放短路径（`C:\dsh`），或给系统打开 `LongPathsEnabled`。
 - **`dsh plugin add` 失败** —— 需要 `dsh` 在 PATH 上、有网络、pnpm 可用。手动补：
   `dsh plugin --profile web add @deepseek-ai/dsh-mcp-client@<dsh 版本>`。
-- **重跑后预设没变** —— 看 `dsh --profile web --dump-config | findstr preset-ida` 是不是旧内容；
+- **重跑后预设没变** —— 看 `dsh --profile web --dump-config | findstr /C:"preset-ida"` 是不是旧内容；
   dsh 的 profile 是启动时装配的，**重启**才作数。
 
 ---
