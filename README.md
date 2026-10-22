@@ -12,6 +12,11 @@ cd dsh-reverse-mode
 node install.mjs
 ```
 
+> 本仓库是 **private**：目标机得能访问 GitHub。最省事是那台机器上 `gh auth login` 过一次，
+> 然后 `gh repo clone BreakFree003/dsh-reverse-mode`；也可以用 PAT：
+> `git clone https://<token>@github.com/BreakFree003/dsh-reverse-mode.git`。
+> 想彻底免登录：`gh repo edit --visibility public`（先把 `assets/prompt-inject.md` 换成你自己的）。
+
 装完重启 dsh → 新建会话 → 选择器里选 **「逆向模式（IDA Pro MCP）」**。
 
 ---
